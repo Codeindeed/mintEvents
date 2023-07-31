@@ -32,7 +32,7 @@ const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
     headers: {
       accept: "application/json",
       "content-type": "application/json",
-      authorization: `Bearer ${import.meta.env.VITE_BEARER}`,
+      authorization: `Bearer ${import.meta.env.VITE_UNDERDOG_KEY}`,
     },
   };
 

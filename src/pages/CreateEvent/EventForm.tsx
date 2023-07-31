@@ -55,7 +55,7 @@ function Eventform() {
         isClosable: true,
       });
     }
-    setIsloading(false)
+    setIsloading(false);
     navigate(-1);
   });
 
@@ -119,7 +119,7 @@ function Eventform() {
         )}
       </FormControl>
       <FormControl isInvalid={errors?.image ? true : false}>
-        <FormLabel>Event details</FormLabel>
+        <FormLabel>Image For Event </FormLabel>
         <Input
           type="file"
           {...register("image", { required: true })}
