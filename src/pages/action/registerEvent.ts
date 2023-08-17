@@ -2,7 +2,7 @@ import { json, redirect } from "react-router-dom";
 import CreatLink from "../../services/createWallet";
 import getUpdateEvent from "../../services/subscribe";
 
-async function subscribeEvent({ request, params }) {
+async function subscribeEvent({ request, params }: any) {
   const form = await request.formData();
   const getEmail = form.get("mail");
   const validate =

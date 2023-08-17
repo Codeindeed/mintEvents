@@ -14,7 +14,7 @@ type Input = {
 async function createEvent(Input: Input) {
   const imageName = `${Input.id}-${Input.image.name}`.split(" ").join("");
   const imagePath = `${supabaseUrl}/storage/v1/object/public/EventImage/NftImage/${imageName}`;
-  const { data, error } = await supabase
+  const { data, } = await supabase
     .from("EventCreator")
     .insert([{ ...Input, image: imagePath }])
     .select();
@@ -33,7 +33,7 @@ async function createEvent(Input: Input) {
       .delete()
       .eq("id", Input.id);
     await supabase.from("EventRegisters").delete().eq("id", Input.id);
-    throw new Error(`${storageError.message}`);
+    throw new Error(`${storageError.message} ${error}`);
   }
   return data;
 }

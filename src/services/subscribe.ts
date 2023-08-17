@@ -6,7 +6,7 @@ async function getUpdateEvent(id: Id, tiplink: Id, publickey: Id, email: Id) {
     .from("EventRegisters")
     .select("*")
     .eq("id", id);
-  const isInside = EventRegisters[0].emailWallet.find((obj) => {
+  const isInside = EventRegisters[0]?.emailWallet.find((obj: { email: string; }) => {
     return obj.email === email;
   });
   if (isInside) {

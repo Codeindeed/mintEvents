@@ -1,4 +1,4 @@
-import { Box, Button, Input, Spinner, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, Input, Text, useToast } from "@chakra-ui/react";
 import { useEffect } from "react";
 import {
   useActionData,
@@ -8,7 +8,7 @@ import {
 
 export default function RegisterEvent() {
   const toast = useToast();
-  const data = useActionData();
+  const data: any = useActionData();
   const navigate = useNavigation();
   const isloading = navigate.state === "submitting" ? true : false;
   useEffect(() => {

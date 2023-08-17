@@ -1,7 +1,7 @@
 import { json, redirect } from "react-router-dom";
 import getEventId from "../../services/getEvents";
 
-async function getEvent({ request }) {
+async function getEvent({ request }: any) {
   const forms = await request.formData();
   const id: string = forms.get("input");
   console.log(id);
