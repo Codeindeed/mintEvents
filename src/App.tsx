@@ -3,7 +3,6 @@ import Homepage from "./Homepage";
 import Mainnav from "./Mainnav";
 import Event from "./pages/CreateEvent/Event";
 import Errorboundary from "./pages/errorElement";
-import { ask } from "./pages/action/ask";
 import getEvent from "./pages/action/register";
 import Register from "./pages/EventUser/Register";
 import register from "./pages/Loader/register";

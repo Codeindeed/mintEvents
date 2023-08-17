@@ -1,10 +1,8 @@
 import { FC, useCallback, useEffect, useState } from "react";
-import { Box, Skeleton, Spinner, useToast } from "@chakra-ui/react";
-import { useWallet } from "@solana/wallet-adapter-react";
-import getWallet, { updateMint } from "../services/getWallets";
+import { Box, Spinner, useToast } from "@chakra-ui/react";
+import getWallet from "../services/getWallets";
 import { useNavigation } from "react-router-dom";
 import { sendNfts } from "../services/sendNfts";
-import { set } from "react-hook-form";
 interface InviteProps {
   desc: string;
   symbol: string;
@@ -134,7 +132,3 @@ const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
 };
 
 export default SendInvite;
-//  filter all wallets the nfts with minting false
-// send to all the wallets that has minting false and set minting true
-// if all minting is sent set button to all wallets sent and disable button
-// if all wallets are not set button to how many wallets did not recieve and set wallet button to complete mint

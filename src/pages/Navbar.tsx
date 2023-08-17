@@ -1,9 +1,6 @@
 import { Box, Text, Link } from "@chakra-ui/react";
 import { Link as ReachLink } from "react-router-dom";
-import {
-  WalletModalButton,
-  WalletMultiButton,
-} from "@solana/wallet-adapter-react-ui";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 function Navbar() {
   return (
     <>

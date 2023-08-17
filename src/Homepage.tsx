@@ -10,14 +10,7 @@ import {
   Heading,
   StackDivider,
 } from "@chakra-ui/react";
-import {
-  PhoneIcon,
-  AddIcon,
-  WarningIcon,
-  ArrowForwardIcon,
-} from "@chakra-ui/icons";
-import { useWallet } from "@solana/wallet-adapter-react";
-import { useEffect, useCallback, useState } from "react";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 
 import {
   Form as InputForm,

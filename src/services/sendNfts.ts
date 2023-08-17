@@ -67,5 +67,3 @@ export const sendMail = async (to: string, tiplink: string) => {
     return;
   }
 };
-// sendMail("favouralex084@gmail.com", "https://tiplink.io/i#3Gapde6FfpQJaFV5k");
-// 957489817bc671.b5fc82fd42cd4c6c9b03f54d07114b69
