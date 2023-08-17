@@ -22,8 +22,8 @@ function Register() {
   const navigate = useNavigation();
   const isloading = navigate.state === "submitting" ? true : false;
   const toast = useToast();
-  let startDate: string;
-  let end: string;
+  let startDate: string | undefined;
+  let end: string | undefined;
   if (data?.message !== null && data?.message !== undefined) {
     toast({
       title: ` ${data?.message}`,

@@ -2,7 +2,7 @@ import { json } from "react-router-dom";
 import getEventId from "../../services/getEvents";
 import getWallet from "../../services/getWallets";
 
-async function register({ params }) {
+async function register({ params }: any) {
   const id: string = params.id;
   const data = await getEventId(id);
   const [{ emailWallet }] = await getWallet(id);
@@ -15,7 +15,7 @@ async function register({ params }) {
   }
   data.push(length);
   console.log(data);
-  
+
   return json(data, { status: 200 });
 }
 

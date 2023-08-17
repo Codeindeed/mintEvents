@@ -1,7 +1,7 @@
 import { json } from "react-router-dom";
 import getUserEvents from "../../services/getUserEvents";
 
-async function loader({ params }) {
+async function loader({ params }: any) {
   const data = await getUserEvents(params.wallet);
   return json(data, { status: 200 });
 }
