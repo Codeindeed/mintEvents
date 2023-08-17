@@ -1,6 +1,7 @@
 import { useWallet } from "@solana/wallet-adapter-react";
 import { Box, Text } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
+import React from "react";
 
 function Event() {
   const { publicKey } = useWallet();

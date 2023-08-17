@@ -3,6 +3,7 @@ import { Box, Spinner, useToast } from "@chakra-ui/react";
 import getWallet from "../services/getWallets";
 import { useNavigation } from "react-router-dom";
 import { sendNfts } from "../services/sendNfts";
+import React from "react";
 interface InviteProps {
   desc: string;
   symbol: string;

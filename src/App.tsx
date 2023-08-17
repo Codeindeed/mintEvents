@@ -10,6 +10,7 @@ import Uploadmetadata from "./pages/uploadMetadata";
 import Eventform from "./pages/CreateEvent/EventForm";
 import loader from "./pages/Loader/getUserEvent";
 import RegisterEvent from "./pages/RegisterEvent";
+import React from "react";
 const routes = createBrowserRouter([
   {
     path: "/",
