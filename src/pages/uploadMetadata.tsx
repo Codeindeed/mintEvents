@@ -14,10 +14,10 @@ import SendInvite from "./CreateMint";
 import { useLoaderData, Link as ReachLink } from "react-router-dom";
 
 function Uploadmetadata() {
-  const data = useLoaderData();
+  const data: any = useLoaderData();
   const total = data?.length;
   function getRemainingDays(startdate: string, endDate: string) {
-    let day: string;
+    let day: string | undefined;
     const days = new Date(endDate).getDate() - new Date(startdate).getDate();
     if (days >= 4) {
       day = `${days} more days to go`;
