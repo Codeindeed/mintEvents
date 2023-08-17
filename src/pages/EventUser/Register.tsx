@@ -18,7 +18,7 @@ import {
 function Register() {
   const [{ eventName, eventDesc, totalNum, created_at, endDate }, registered] =
     useLoaderData();
-  const data = useActionData();
+  const data: any = useActionData();
   const navigate = useNavigation();
   const isloading = navigate.state === "submitting" ? true : false;
   const toast = useToast();
