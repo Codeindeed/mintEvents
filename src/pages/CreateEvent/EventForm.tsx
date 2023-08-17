@@ -6,19 +6,12 @@ import {
   FormHelperText,
   FormLabel,
   Input,
-  Spinner,
-  Text,
   useToast,
 } from "@chakra-ui/react";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  Form as FormInput,
-  useParams,
-  useNavigate,
-  redirect,
-} from "react-router-dom";
+import { Form as FormInput, useParams, useNavigate } from "react-router-dom";
 import createEvent from "../../services/newEvent";
 
 function Eventform() {
