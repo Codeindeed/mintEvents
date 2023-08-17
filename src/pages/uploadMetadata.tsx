@@ -12,7 +12,7 @@ import {
 import { AttachmentIcon } from "@chakra-ui/icons";
 import SendInvite from "./CreateMint";
 import { useLoaderData, Link as ReachLink } from "react-router-dom";
-import React from "react";
+
 
 function Uploadmetadata() {
   const data: any = useLoaderData();
@@ -67,7 +67,8 @@ function Uploadmetadata() {
           <Heading fontSize={"2rem"}>Events</Heading>
           {total > 0 && (
             <Flex flexDirection={"column"} gap={"1.2rem"}>
-              {data.sort((a: { endDate: string; }, b: { endDate: string; }) => {
+              {data
+                .sort((a: { endDate: string }, b: { endDate: string }) => {
                   return Date.parse(b.endDate) - Date.parse(a.endDate);
                 })
                 .map((data) => (

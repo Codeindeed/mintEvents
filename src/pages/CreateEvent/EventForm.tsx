@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Form as FormInput, useParams, useNavigate } from "react-router-dom";
 import createEvent from "../../services/newEvent";
-import React from "react";
+
 
 function Eventform() {
   const {
