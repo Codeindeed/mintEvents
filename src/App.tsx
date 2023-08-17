@@ -11,6 +11,7 @@ import subscribeEvent from "./pages/action/registerEvent";
 import Uploadmetadata from "./pages/uploadMetadata";
 import Eventform from "./pages/CreateEvent/EventForm";
 import loader from "./pages/Loader/getUserEvent";
+import RegisterEvent from "./pages/RegisterEvent";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +21,10 @@ const routes = createBrowserRouter([
       {
         index: true,
         element: <Homepage />,
+      },
+      {
+        path: "search",
+        element: <RegisterEvent />,
         action: getEvent,
       },
       {

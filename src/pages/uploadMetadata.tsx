@@ -1,13 +1,4 @@
 import {
-  Metaplex,
-  walletAdapterIdentity,
-  bundlrStorage,
-  toMetaplexFile,
-} from "@metaplex-foundation/js";
-import image from "../assets/imgs.png";
-import * as fs from "fs";
-import { useEffect } from "react";
-import {
   Badge,
   Box,
   Button,
@@ -24,10 +15,7 @@ import { useLoaderData, Link as ReachLink } from "react-router-dom";
 
 function Uploadmetadata() {
   const data = useLoaderData();
-  let bg: string;
-  console.log(data);
-  const total = data.length;
-
+  const total = data?.length;
   function getRemainingDays(startdate: string, endDate: string) {
     let day: string;
     const days = new Date(endDate).getDate() - new Date(startdate).getDate();
@@ -48,12 +36,7 @@ function Uploadmetadata() {
     return day;
   }
   return (
-    <Container
-      maxW="2xl"
-      centerContent
-      // overflow={"hidden"}
-      w={"100%"}
-    >
+    <Container maxW="2xl" centerContent w={"100%"}>
       <Flex flexDirection={"column"} gap={4}>
         <Box
           textAlign={"center"}
@@ -80,9 +63,9 @@ function Uploadmetadata() {
           h={"60rem"}
           overflow={"scroll"}
         >
-          <Heading fontSize={18}>Events</Heading>
+          <Heading fontSize={"2rem"}>Events</Heading>
           {total > 0 && (
-            <Flex flexDirection={"column"} gap={3}>
+            <Flex flexDirection={"column"} gap={"1.2rem"}>
               {[...data]
                 .sort((a, b) => {
                   return Date.parse(b.endDate) - Date.parse(a.endDate);
@@ -108,7 +91,7 @@ function Uploadmetadata() {
                       h={"5rem"}
                       p={2}
                       gap={5}
-                      fontSize={"8px"}
+                      fontSize={"0.8rem"}
                     >
                       <Text>Event name:{data.eventName} </Text>
                       <Text>

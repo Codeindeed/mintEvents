@@ -13,11 +13,6 @@ function Errorboundary() {
     });
     console.log(error);
   }
-  return (
-    <>
-      <h1>hello</h1>
-    </>
-  );
 }
 
 export default Errorboundary;

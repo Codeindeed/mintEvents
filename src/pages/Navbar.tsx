@@ -8,17 +8,16 @@ function Navbar() {
   return (
     <>
       <Box
-        bg="tomato"
-        color="white"
-        p={8}
-        h={20}
         display={"flex"}
+        p={["1.25rem", "1.23rem"]}
         alignItems={"center"}
         justifyContent={"space-between"}
+        alignSelf={"stretch"}
+        bg={"#fffe"}
       >
         <Link as={ReachLink}>
           <Text fontSize={20} fontWeight={600}>
-            CEVENTS
+            MINTEVENTS
           </Text>
         </Link>
         <WalletMultiButton />

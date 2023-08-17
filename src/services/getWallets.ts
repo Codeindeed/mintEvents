@@ -16,7 +16,6 @@ export async function updateMint(id: string, email: string, change: boolean) {
   const object = wallets.map((e: { email: string; minted: boolean }) => {
     if (e.email === email) {
       e.minted = change;
-      console.log(e);
     }
     return e;
   });
@@ -26,9 +25,8 @@ export async function updateMint(id: string, email: string, change: boolean) {
     .eq("id", id)
     .select();
   if (error) {
-    throw new Error("Connection Error");
+    throw new Error("Check if you are still Connected to the Internet 🥹");
   }
-
   return emailWallet;
 }
 

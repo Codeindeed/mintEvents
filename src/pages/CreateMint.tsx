@@ -1,7 +1,10 @@
-import { FC, useEffect, useState } from "react";
-import { Button, useToast } from "@chakra-ui/react";
+import { FC, useCallback, useEffect, useState } from "react";
+import { Box, Skeleton, Spinner, useToast } from "@chakra-ui/react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import getWallet, { updateMint } from "../services/getWallets";
+import { useNavigation } from "react-router-dom";
+import { sendNfts } from "../services/sendNfts";
+import { set } from "react-hook-form";
 interface InviteProps {
   desc: string;
   symbol: string;
@@ -11,9 +14,11 @@ interface InviteProps {
 
 const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
   const toast = useToast();
+  const navigation = useNavigation();
   const [loadings, setisLoading] = useState<boolean>(false);
   const [allminted, setAllminted] = useState<boolean>(false);
-  const getandSetButton = async () => {
+
+  const getandSetButton = useCallback(async () => {
     const [{ emailWallet }] = await getWallet(id);
     const wallet = emailWallet.filter(
       (e: { minted: boolean }) => e.minted === false
@@ -21,12 +26,12 @@ const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
     emailWallet.length > 0 && wallet.length === 0
       ? setAllminted(true)
       : setAllminted(false);
+    setisLoading(true);
     return;
-  };
+  }, [id]);
   useEffect(() => {
     getandSetButton();
-  }, [allminted]);
-  let loadingText: string;
+  }, [allminted, getandSetButton]);
   const mainOption = {
     method: "POST",
     headers: {
@@ -37,6 +42,7 @@ const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
   };
 
   const Collection = async () => {
+    setisLoading(false);
     const options = {
       ...mainOption,
       body: JSON.stringify({
@@ -51,12 +57,10 @@ const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
     };
     try {
       const create = await fetch(
-        "https://dev.underdogprotocol.com/v2/projects",
+        import.meta.env.VITE_UNDERDOG_PROJECT_URL,
         options
       );
       const data = await create.json();
-      console.log(data);
-
       toast({
         title: `Created Your Collection`,
         description: ` This is the mint Address:${data.mintAddress}`,
@@ -64,7 +68,28 @@ const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
         duration: 6000,
         isClosable: true,
       });
-      return data.projectId;
+      if (data.mintAddress) {
+        setTimeout(async () => {
+          const [{ emailWallet }] = await getWallet(id);
+          const wallet = emailWallet.filter(
+            (e: { minted: boolean }) => e.minted === false
+          );
+          for (let index = 0; index < wallet.length; index++) {
+            const element = wallet[index];
+            await sendNfts(
+              id,
+              element.publickey,
+              symbol,
+              data.projectId,
+              Image,
+              element
+            );
+          }
+          setisLoading(true);
+          await getandSetButton();
+        }, 30000);
+      }
+      return;
     } catch (error) {
       toast({
         title: ` Error`,
@@ -73,62 +98,37 @@ const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
         duration: 9000,
         isClosable: true,
       });
-    }
-  };
-  const sendNfts = async (
-    reciever: string,
-    name: string,
-    projectId: number,
-    data: {
-      email: string;
-      tiplink: string;
-      publickey: string;
-      minted: boolean;
-    }
-  ) => {
-    const options = {
-      ...mainOption,
-      body: JSON.stringify({
-        name: name,
-        symbol: "ME",
-        image: Image,
-        receiverAddress: reciever,
-      }),
-    };
-    const send = await fetch(
-      `https://dev.underdogprotocol.com/v2/projects/c/${projectId}/nfts`,
-      options
-    );
-    const sent = await send.json();
-    if (sent.transactionId) {
-      await updateMint(id, data.email, true);
+      setisLoading(true);
     }
   };
   const Onclicks = async () => {
-    const projectId = await Collection();
-    const [{ emailWallet }] = await getWallet(id);
-    setTimeout(async function () {
-      const wallet = emailWallet.filter(
-        (e: { minted: boolean }) => e.minted === false
-      );
-      wallet.forEach(
-        async (e: {
-          publickey: string;
-          email?: string;
-          tiplink?: string;
-          minted?: boolean;
-        }) => {
-          await sendNfts(e.publickey, symbol, projectId, e);
-        }
-      );
-      await getandSetButton();
-    }, 20000);
+    console.log(navigation.state);
+    await Collection();
   };
   return (
     <>
-      <Button isLoading={allminted} bg={"whatsapp.300"} onClick={Onclicks}>
-        {"Send Invites"}
-      </Button>
+      <Box
+        as={"button"}
+        height={"1rem"}
+        display={"flex"}
+        alignItems={"center"}
+        p={"1.7rem"}
+        borderRadius={"5rem"}
+        _disabled={{ bg: "#ebedf0" }}
+        _hover={{
+          bg: "#32724C",
+          color: "#fff",
+          boxShadow:
+            "0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)",
+        }}
+        disabled={allminted}
+        bg={"#65e495"}
+        onClick={Onclicks}
+      >
+        {!loadings && <Spinner></Spinner>}
+        {loadings && !allminted && "Send Invite"}
+        {loadings && allminted && "All Invites Sent"}
+      </Box>
     </>
   );
 };

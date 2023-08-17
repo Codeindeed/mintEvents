@@ -7,8 +7,8 @@ async function getEvent({ request }) {
   console.log(id);
 
   if (!id) {
-    console.log(id);
-    throw Error("no id input empty");
+    const info = { message: "No Id input is Empty" };
+    return json(info, { status: 400 });
   }
   const data = await getEventId(id);
   if (!Array.isArray(data) || !data.length) {
@@ -16,7 +16,7 @@ async function getEvent({ request }) {
     console.log(info);
     return json(info, { status: 400 });
   }
-  return redirect(`register/${id}`);
+  return redirect(`/register/${id}`);
 }
 
 export default getEvent;

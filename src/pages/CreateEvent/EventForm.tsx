@@ -141,16 +141,21 @@ function Eventform() {
         )}
       </FormControl>
       <Button
+        bg={"#00A0DC"}
+        color={"white"}
         type="submit"
-        _hover={{ bg: "#9945FF" }}
+        _hover={{
+          bg: "#1183AD",
+        }}
         _active={{
-          bg: "#dddfe2",
+          bg: "#00A0DC",
           transform: "scale(0.98)",
           borderColor: "#bec3c9",
         }}
+        isLoading={isLoading}
+        loadingText={"Creating Event"}
       >
-        {isLoading && <Spinner />}
-        {!isLoading && <Text as={"p"}>Submit</Text>}
+        Submit
       </Button>
     </Flex>
   );

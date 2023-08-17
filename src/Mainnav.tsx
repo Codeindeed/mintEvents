@@ -15,11 +15,11 @@ function Mainnav() {
   return (
     <Box
       as={"main"}
-      minH={"100vh"}
-      h="80rem"
-      maxH={"100%"}
-      display={"flex"}
+      w={["80rem", "100%"]}
+      bg={"#F8F9FF"}
       flexDirection={"column"}
+      display={"flex"}
+      alignItems={"center"}
     >
       <Navbar />
       <Outlet />

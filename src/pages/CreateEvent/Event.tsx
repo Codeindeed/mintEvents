@@ -15,32 +15,21 @@ import { Form as FormInput, Outlet, useActionData } from "react-router-dom";
 function Event() {
   const { publicKey } = useWallet();
   return (
-    <Box h={"100%"} p={"3"} w={"100%"}>
+    <Box h="59rem" p={"1rem"}>
       {publicKey && <Outlet />}
       {!publicKey && (
         <Box
-          h="100%"
-          w={"100%"}
-          bg={"black"}
           display={"flex"}
-          alignItems={"center"}
           justifyContent={"center"}
+          alignItems={"center"}
+          w={"50rem"}
+          mt={"auto"}
+          mb={"auto"}
+          h={"100%"}
         >
-          <Box>
-            <Box
-              w={"500px"}
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"center"}
-              flexDirection={"column"}
-              gap={1}
-              color={"white"}
-            >
-              <Text fontSize={"3rem"} color={"blue.700"}>
-                Please Connect your Wallet💜
-              </Text>
-            </Box>
-          </Box>
+          <Text textAlign={"center"} fontSize={"3rem"} color={"blue.700"}>
+            Please Connect your Wallet 💜
+          </Text>
         </Box>
       )}
     </Box>
