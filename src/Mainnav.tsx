@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "./pages/Footer";
 import Navbar from "./pages/Navbar";
 import { useWallet } from "@solana/wallet-adapter-react";
-import React from "react";
+
 
 function Mainnav() {
   const { wallet, publicKey } = useWallet();
