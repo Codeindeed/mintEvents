@@ -13,9 +13,6 @@ import {
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 
 import {
-  Form as InputForm,
-  useActionData,
-  useNavigation,
   Link as Reachlink,
 } from "react-router-dom";
 function Homepage() {

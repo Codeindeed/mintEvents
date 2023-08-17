@@ -1,16 +1,6 @@
 import { useWallet } from "@solana/wallet-adapter-react";
-import {
-  Box,
-  Text,
-  Input,
-  Flex,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  FormErrorMessage,
-  Button,
-} from "@chakra-ui/react";
-import { Form as FormInput, Outlet, useActionData } from "react-router-dom";
+import { Box, Text } from "@chakra-ui/react";
+import { Outlet } from "react-router-dom";
 
 function Event() {
   const { publicKey } = useWallet();

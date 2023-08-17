@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Homepage from "./Homepage";
 import Mainnav from "./Mainnav";
 import Event from "./pages/CreateEvent/Event";
-import Errorboundary from "./pages/errorElement";
 import getEvent from "./pages/action/register";
 import Register from "./pages/EventUser/Register";
 import register from "./pages/Loader/register";
@@ -15,7 +14,6 @@ const routes = createBrowserRouter([
   {
     path: "/",
     element: <Mainnav />,
-    errorElement: <Errorboundary />,
     children: [
       {
         index: true,
