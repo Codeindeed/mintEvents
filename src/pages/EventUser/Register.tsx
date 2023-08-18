@@ -16,7 +16,18 @@ import {
   useNavigation,
 } from "react-router-dom";
 function Register() {
-  const [{ eventName, eventDesc, totalNum, created_at, endDate }, registered] = useLoaderData();
+  type LoaderData = [
+    {
+      eventName: string;
+      eventDesc: string;
+      totalNum: number;
+      created_at: string;
+      endDate: string;
+    },
+    number
+  ];
+
+  const [{ eventName, eventDesc, totalNum, created_at, endDate }, registered] = useLoaderData() as LoaderData;
   const data: any = useActionData();
   const navigate = useNavigation();
   const isloading = navigate.state === "submitting" ? true : false;
