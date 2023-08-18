@@ -6,9 +6,14 @@ async function getUpdateEvent(id: Id, tiplink: Id, publickey: Id, email: Id) {
     .from("EventRegisters")
     .select("*")
     .eq("id", id);
-  const isInside = EventRegisters[0]?.emailWallet.find((obj: { email: string; }) => {
-    return obj.email === email;
-  });
+  if (!EventRegisters) {
+    throw new Error("EventRegisters not found");
+  }
+  const isInside = EventRegisters[0]?.emailWallet.find(
+    (obj: { email: string }) => {
+      return obj.email === email;
+    }
+  );
   if (isInside) {
     return null;
   }
@@ -33,12 +38,9 @@ async function getUpdateEvent(id: Id, tiplink: Id, publickey: Id, email: Id) {
     }
     return data;
   }
-
   if (getError) {
-    throw new Error(`${getError.message}`);
+    throw new Error(`${getError}`);
   }
-
   return EventRegisters;
 }
-
 export default getUpdateEvent;

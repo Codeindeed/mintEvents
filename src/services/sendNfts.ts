@@ -67,3 +67,5 @@ export const sendMail = async (to: string, tiplink: string) => {
     return;
   }
 };
+
+
