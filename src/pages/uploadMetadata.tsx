@@ -13,7 +13,6 @@ import { AttachmentIcon } from "@chakra-ui/icons";
 import SendInvite from "./CreateMint";
 import { useLoaderData, Link as ReachLink } from "react-router-dom";
 
-
 function Uploadmetadata() {
   const data: any = useLoaderData();
   const total = data?.length;
@@ -71,45 +70,55 @@ function Uploadmetadata() {
                 .sort((a: { endDate: string }, b: { endDate: string }) => {
                   return Date.parse(b.endDate) - Date.parse(a.endDate);
                 })
-                .map((data) => (
-                  <HStack
-                    bg={`${
-                      getRemainingDays(data.created_at, data.endDate) ===
-                      "Ended"
-                        ? "red.100"
-                        : "white"
-                    }`}
-                    p={"4"}
-                    boxShadow="2xl"
-                    rounded="md"
-                    key={data.id}
-                  >
-                    <AttachmentIcon boxSize={6} w={8} h={4} color="red.500" />
-                    <Flex
-                      flexDirection={"row"}
-                      alignItems={"center"}
-                      w={"40rem"}
-                      h={"5rem"}
-                      p={2}
-                      gap={5}
-                      fontSize={"0.8rem"}
+                .map(
+                  (data: {
+                    created_at: string;
+                    endDate: string;
+                    id: string;
+                    eventName: string;
+                    totalNum: number;
+                    eventDesc: string;
+                    image: string;
+                  }) => (
+                    <HStack
+                      bg={`${
+                        getRemainingDays(data.created_at, data.endDate) ===
+                        "Ended"
+                          ? "red.100"
+                          : "white"
+                      }`}
+                      p={"4"}
+                      boxShadow="2xl"
+                      rounded="md"
+                      key={data.id}
                     >
-                      <Text>Event name:{data.eventName} </Text>
-                      <Text>
-                        End Date:{" "}
-                        {getRemainingDays(data.created_at, data.endDate)}
-                      </Text>
-                      <Text>Total: {data.totalNum}</Text>
-                      <Text>EventId: {data.id}</Text>
-                    </Flex>
-                    <SendInvite
-                      desc={data.eventDesc}
-                      symbol={data.eventName}
-                      Image={data.image}
-                      id={data.id}
-                    ></SendInvite>
-                  </HStack>
-                ))}
+                      <AttachmentIcon boxSize={6} w={8} h={4} color="red.500" />
+                      <Flex
+                        flexDirection={"row"}
+                        alignItems={"center"}
+                        w={"40rem"}
+                        h={"5rem"}
+                        p={2}
+                        gap={5}
+                        fontSize={"0.8rem"}
+                      >
+                        <Text>Event name:{data.eventName} </Text>
+                        <Text>
+                          End Date:{" "}
+                          {getRemainingDays(data.created_at, data.endDate)}
+                        </Text>
+                        <Text>Total: {data.totalNum}</Text>
+                        <Text>EventId: {data.id}</Text>
+                      </Flex>
+                      <SendInvite
+                        desc={data.eventDesc}
+                        symbol={data.eventName}
+                        Image={data.image}
+                        id={data.id}
+                      ></SendInvite>
+                    </HStack>
+                  )
+                )}
             </Flex>
           )}
           {total === 0 && (
