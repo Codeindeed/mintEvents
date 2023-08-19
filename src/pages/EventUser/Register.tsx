@@ -27,7 +27,8 @@ function Register() {
     number
   ];
 
-  const [{ eventName, eventDesc, totalNum, created_at, endDate }, registered] = useLoaderData() as LoaderData;
+  const [{ eventName, eventDesc, totalNum, created_at, endDate }, registered] =
+    useLoaderData() as LoaderData;
   const data: any = useActionData();
   const navigate = useNavigation();
   const isloading = navigate.state === "submitting" ? true : false;
