@@ -1,7 +1,6 @@
 import { FC, useCallback, useEffect, useState } from "react";
 import { Box, Spinner, useToast } from "@chakra-ui/react";
 import getWallet from "../services/getWallets";
-import { useNavigation } from "react-router-dom";
 import { sendNfts } from "../services/sendNfts";
 
 interface InviteProps {
@@ -13,7 +12,6 @@ interface InviteProps {
 
 const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
   const toast = useToast();
-  const navigation = useNavigation();
   const [loadings, setisLoading] = useState<boolean>(false);
   const [allminted, setAllminted] = useState<boolean>(false);
 
