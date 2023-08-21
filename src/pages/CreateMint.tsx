@@ -33,10 +33,11 @@ const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
   }, [allminted, getandSetButton]);
   const mainOption = {
     method: "POST",
+
     headers: {
       accept: "application/json",
       "content-type": "application/json",
-      authorization: `Bearer ${import.meta.env.VITE_UNDERDOG_KEY}`,
+      authorization: `Bearer ${import.meta.env.VITE_UNDERDOG_MAINNET_KEY}`,
     },
   };
 
@@ -49,14 +50,11 @@ const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
         symbol: "ME",
         description: desc,
         image: Image,
-        transferable: false,
-        compressed: true,
-        isPublic: true,
       }),
     };
     try {
       const create = await fetch(
-        import.meta.env.VITE_UNDERDOG_PROJECT_URL,
+        import.meta.env.VITE_UNDERDOG_PROJECT_URL_MAINNET,
         options
       );
       const data = await create.json();
@@ -90,6 +88,7 @@ const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
       }
       return;
     } catch (error) {
+      console.log(error);
       toast({
         title: ` Error`,
         description: "Couldnt Create Collection for Events",
@@ -101,7 +100,6 @@ const SendInvite: FC<InviteProps> = ({ desc, symbol, Image, id }) => {
     }
   };
   const Onclicks = async () => {
-    console.log(navigation.state);
     await Collection();
   };
   return (

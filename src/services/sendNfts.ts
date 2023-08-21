@@ -31,7 +31,9 @@ export const sendNfts = async (
   };
   try {
     const send = await fetch(
-      `https://dev.underdogprotocol.com/v2/projects/c/${projectId}/nfts`,
+      `${
+        import.meta.env.VITE_UNDERDOG_PROJECT_URL_MAINNET
+      }/c/${projectId}/nfts`,
       options
     );
     const datas = await send.json();
@@ -48,7 +50,7 @@ export const sendNfts = async (
 };
 
 export const sendMail = async (to: string, tiplink: string) => {
-  const response = await fetch("http://localhost:3000/mail", {
+  const response = await fetch("https://cyan-chiton-boot.cyclic.cloud/mail", {
     method: "POST",
     headers: {
       accept: "application/json",
@@ -60,12 +62,12 @@ export const sendMail = async (to: string, tiplink: string) => {
     }),
   });
   const data = await response.json();
-  if (!data.ok) {
+  console.log(data);
+
+  if (!data.message || data.message === "error") {
     throw new Error("Email not sent");
   }
   if (data.ok) {
     return;
   }
 };
-
-

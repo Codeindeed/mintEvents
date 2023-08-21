@@ -14,8 +14,6 @@ async function register({ params }: any) {
     return json(info, { status: 400 });
   }
   data.push(length);
-  console.log(data);
-
   return json(data, { status: 200 });
 }
 
